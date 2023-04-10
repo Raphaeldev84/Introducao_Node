@@ -1,0 +1,22 @@
+{
+  "name": "3_pacote_npm",
+  "version": "1.0.0",
+  "description": "Pacote top e revolucionário",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "executar": "node ./index.js",
+    "batata": "echo BATATATATATATA",
+    "start": "node ./index.js"
+  },
+  "keywords": [
+    "cpf",
+    "batata",
+    "node"
+  ],
+  "author": "Raphael Faria",
+  "license": "ISC",
+  "dependencies": {
+    "cpf": "^2.0.1"
+  }
+}
