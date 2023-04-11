@@ -80,6 +80,64 @@ app.get('/cpfs/:numero', (req, res) => {
   
   });
 
+  app.get("/youtube", (req, res) => {
+    const {canal} = req.query;
+    res.send("Youtube: " + canal);
+  });
+
+  //params = mais restrito a url
+
+  //query = mais flexivel, mas suja muito a url
 
 //Inicializa a escuta de requisições do servidor
+
+//Exercício 1
+app.get("/nome",  (req, res) => {
+    const {nome} = req.query;
+
+    if(nome) {
+        res.send(`Olá, ${nome}!`)
+    } else {
+        res.status(400).send("Envie o nome corretamente!");
+    }
+});
+
+app.get("/soma", (req, res) => {
+    const { num1, num2} = req.query;
+    if((num1 !== undefined) && (num2 !== undefined)) {
+        const soma = Number(num1) + Number(num2);
+    } else {
+        res.status(400).send("Forneça dois números válidos");
+    }
+})
+
+app.get("/boasvindas", (req, res) => {
+    const { lang} = req.query;
+    if(lang === "pt") {
+        res.send("Bem-vindo!");
+    } else if (lang === "en") {
+        res.send("welcome!");
+    } else {
+        res.status(400).send("Idioma não suportado!");
+    }
+})
+
+const usuarios = require("./usuarios");
+
+app.get("/usuarios", (req, res) => {
+    res.json(usuarios);
+})
+
+app.get("/usuarios/:index", (req, res) => {
+    const index = Number(req.params.index);
+    const usuariosEncontrado = usuarios[index];
+    if(usuariosEncontrado) {
+        res.json(usuariosEncontrado);
+    } else {
+        res.status(404).send({mensagem: "Usuário não encontrado"});
+    }
+    
+})
+
+
 app.listen(3000);
