@@ -36,7 +36,7 @@ app.get("/funcionarios/:cpf" , (req, res) =>{
     // req.params = guarda todos os paramentros de rota
     console.log(req.params.cpf);
     const cpf = req.params.cpf;
-    res.send(`Funcionário eoncontrado: ${cpf}`);
+    res.send(`Funcionário ecncontrado: ${cpf}`);
 });
 
 app.get("/pessoas/:nome/:empresa", (req, res) => {
