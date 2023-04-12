@@ -128,6 +128,17 @@ app.get("/usuarios", (req, res) => {
     res.json(usuarios);
 })
 
+// Exercício V: Crie uma rota "/usuarios/novo", e por meio dos parâmetros de consulta colete nome e email para inserir no array de usuários.
+
+
+app.get("/usuarios/novo", (req, res) => {
+    const { nome, email } = req.query;
+    const novoUsuario = { nome: nome, email: email };
+    usuarios.push(novoUsuario);
+    res.status(201).json({ messagem: "Usuário adicionado" });
+  });
+
+
 app.get("/usuarios/:index", (req, res) => {
     const index = Number(req.params.index);
     const usuariosEncontrado = usuarios[index];
@@ -138,6 +149,22 @@ app.get("/usuarios/:index", (req, res) => {
     }
     
 })
+
+
+// Exercício IV: Crie uma rota "/usuarios/email", e filtre o usuário com o email fornecido via parâmetros de rota. Caso não encontre, responda com 404.
+// => /usuarios/email/gabriel.braga@soulcode.com
+
+app.get("/usuarios/email/:email", (req, res) =>{
+    const {email} = req.params;
+    const usuariosEncontrado = usuarios.find(el => el.email === email);
+    if(usuariosEncontrado) {
+        res.json(usuariosEncontrado);
+    } else {
+        res.status(404).json({menssagem: "Usuário não encontrado"});
+    }
+
+})
+
 
 
 app.listen(3000);
